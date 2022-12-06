@@ -1,5 +1,6 @@
-# Vault-proxy
+# Vault-userpass-rotation
 
+Configure nginx (https://mohsensy.github.io/sysadmin/2018/02/08/nginx-reverse-proxy.html)
 systemctl restart nginx.service
 
 vault server -config ./config.hcl
@@ -10,7 +11,9 @@ vault operator unseal
 
 vault status
 
-vault write auth/userpass/users/mitchellh     password=foo     policies=password-update-policy
+vault login (use root token)
+
+vault policy write password-update-policy ./password-update-policy.hcl
 vault policy list
 
 vault auth enable userpass
